@@ -5,22 +5,25 @@ class Download extends Component {
     super(props);
 
     this.state = {
-      txt: "Text to download as a file",
-      linking: ""
+      txt: ""
     };
     //this.handleClick = this.handleClick.bind(this);
   }
   handleClick = e => {
+    //create downloadUrl
     let downloadUrl = null;
-    //var download = document.querySelector("a[ download ]");
-    //console.log(event);
+
     // Create a binary representation of the plain-text input.
+    //"application/pdf""text/plain;charset=utf-8"
+    //let myObject = JSON.parse(this.state.txt);
     let blob = new Blob(
       [this.state.txt], // Blob parts.
       {
-        type: "text/plain;charset=utf-8"
+        type: "application/msword"
       }
     );
+
+    // revoke if url already exists
     if (downloadUrl) {
       URL.revokeObjectURL(downloadUrl);
     }
@@ -32,19 +35,14 @@ class Download extends Component {
     downloadUrl = URL.createObjectURL(blob);
 
     // Tie the addressable version of the blob to the download link.
-    //download.setAttribute("href", downloadUrl);
     const data = window.URL.createObjectURL(blob);
-    //let link = document.querySelector("a[ download ]");
-    //var download = document.querySelector("a[ download ]");
     let link = document.createElement("a");
     link.href = data;
-    //link.download = "file.pdf";
-    link.download = "data.txt";
+    link.download = "data.doc";
     link.click();
   };
-  handleBlur() {
-    console.log("You finished typing:", this.state.txt);
-  }
+  handleBlur() {}
+
   handleChange(event) {
     this.setState({ txt: event.target.value });
   }
@@ -53,17 +51,16 @@ class Download extends Component {
       <div>
         <h1>file download</h1>
         values: {this.state.txt}
+        <br />
+        <br />
+        <br />
         <form>
           <textarea
-            placeholder="Text to download as a file"
             onChange={this.handleChange.bind(this)}
             value={this.state.txt}
             onBlur={this.handleBlur.bind(this)}
           ></textarea>
           <button onClick={e => this.handleClick(e)}>Download Text</button>
-          {/*<a href="#" download="data.txt" onClick={e => this.handleClick(e)}>
-            Download Text
-    </a>*/}
         </form>
       </div>
     );
