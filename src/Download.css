@@ -11,7 +11,7 @@ textarea {
   font-size: 18px;
 }
 .Button {
-  background-color: #4caf50;
+  background-color: blue;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -19,6 +19,16 @@ textarea {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  transition: all 2 ease;
+  transition-property: background-color, color;
+  -webkit-transition: all 2 ease;
+  -webkit-transition-property: background-color, color;
+}
+
+.Button:hover {
+  cursor: pointer;
+  background-color: #4caf50;
+  opacity: 1;
 }
 h1 {
   color: #4caf50;
