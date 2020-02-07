@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Download.css";
 
 class Download extends Component {
   constructor(props) {
@@ -13,9 +14,7 @@ class Download extends Component {
     //create downloadUrl
     let downloadUrl = null;
 
-    // Create a binary representation of the plain-text input.
-    //"application/pdf""text/plain;charset=utf-8"
-    //let myObject = JSON.parse(this.state.txt);
+    // Create a javascript blob representation of input.
     let blob = new Blob(
       [this.state.txt], // Blob parts.
       {
@@ -49,18 +48,23 @@ class Download extends Component {
   render() {
     return (
       <div>
-        <h1>file download</h1>
-        values: {this.state.txt}
+        <h1>Macy's file download Demo</h1>
         <br />
         <br />
         <br />
         <form>
-          <textarea
-            onChange={this.handleChange.bind(this)}
-            value={this.state.txt}
-            onBlur={this.handleBlur.bind(this)}
-          ></textarea>
-          <button onClick={e => this.handleClick(e)}>Download Text</button>
+          <div className="formContent">
+            <textarea
+              onChange={this.handleChange.bind(this)}
+              value={this.state.txt}
+              onBlur={this.handleBlur.bind(this)}
+            ></textarea>
+            <br />
+            <br />
+            <button className="Button" onClick={e => this.handleClick(e)}>
+              Download Data as Word Document
+            </button>
+          </div>
         </form>
       </div>
     );
